@@ -104,10 +104,11 @@ class Server:
             ])
             content = completion.choices[0].message.content
             print('[debug]:'+ content)
+            
 
         elif msg_type == 'shutdown':
             content = '正在关机，再见'
-            
+
         else: 
             content = '我不知道你在说什么'
 
