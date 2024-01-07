@@ -23,28 +23,23 @@ class Server:
     
     def run(self):
         try:
-            # while start_key not in record_and_recognize():
-            #     pass
+            while start_key not in record_and_recognize():
+                pass
             Speaker.speak("我在")
-            # while True:
-            #     message,msg_type = self._get_speechin() # 检测说话信息
-            #     # print('[debug]', msg_type)
-            #     content = self._create_chat(message, msg_type)
-            #     Speaker.speak(content)
-            #     asyncio.run(self.listen_pause())
-            #     if msg_type == 'shutdown':
-            #         break
+            while True:
+                message,msg_type = self._get_speechin() # 检测说话信息
+                # print('[debug]', msg_type)
+                content = self._create_chat(message, msg_type)
+                # asyncio.run(self.listen_pause())
+                if msg_type == 'shutdown':
+                    break
+                elif msg_type == 'music':
+                    player = MusicPlayer(content)
+                    player_thread = threading.Thread(target=player.play)
+                    player_thread.start()
+                    # 主线程等待音乐播放完成
+                    player_thread.join()
             # asyncio.run(self.listen_pause())
-            
-            player = MusicPlayer('消愁')
-            player_thread = threading.Thread(target=player.play)
-            player_thread.start()
-            
-            
-            # 主线程等待音乐播放完成
-            player_thread.join()
-            
-        
         except KeyboardInterrupt:
             print('[debug]ctrl+c')
     
@@ -71,6 +66,10 @@ class Server:
         elif ('关机' in message) or ('退出' in message):
             reply, msg_type = Tools.shutdown()
             return reply, msg_type
+        elif ('播放' in message) or ('歌' in message):
+            reply = message
+            msg_type = 'music'
+            return reply, msg_type
         else:
             return message,'GPT'
 
@@ -84,6 +83,7 @@ class Server:
                 {"role": "user", "content": message},
             ])
             content = completion.choices[0].message.content
+            Speaker.speak(content)
             
         elif msg_type == 'GPT':
             completion = self.client.chat.completions.create(
@@ -93,10 +93,21 @@ class Server:
                 {"role": "user", "content": message},
             ])
             content = completion.choices[0].message.content
+            Speaker.speak(content)
+
+        elif msg_type == 'music':
+            completion = self.client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "通过用户的输入内容，返回一首歌的歌名"},
+                {"role": "user", "content": message},
+            ])
+            content = completion.choices[0].message.content
+            print('[debug]:'+ content)
 
         elif msg_type == 'shutdown':
             content = '正在关机，再见'
-
+            
         else: 
             content = '我不知道你在说什么'
 

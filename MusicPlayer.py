@@ -4,8 +4,6 @@ import pygame
 import requests
 import jsonpath
 import os
-import threading
-import time
 
 class MusicPlayer:
     def __init__(self,name):
