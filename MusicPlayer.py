@@ -34,7 +34,10 @@ class MusicPlayer:
                     self.ifpause = False
                     pygame.mixer.music.unpause()
                     print('[debug]music unpause')
-                
+            if '结束' in text:
+                pygame.mixer.music.stop()
+                print('[debug]music stop')
+            
             
 def _song_download(url,title,author):
     input_path = os.getcwd() + '/data/binary_music.mp3'
