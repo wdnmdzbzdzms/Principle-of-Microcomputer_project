@@ -11,15 +11,11 @@ class MusicPlayer:
         self.paused = False
         self.recover =False
         self.ifpause =False
-        # print('[debug musicplayer]',os.getcwd() + '/data/music.mp3')
         download_music(name)
         pygame.mixer.music.load(r'/home/kanno/Desktop/personal_folder/EE351/project2_byzzx_1217/data/music.mp3')
 
     def play(self):
-        
         pygame.mixer.music.play()
-        
-
         while pygame.mixer.music.get_busy():
             print("[debug]music is playing")
             # time.sleep(0.5)
@@ -37,6 +33,7 @@ class MusicPlayer:
             if '结束' in text:
                 pygame.mixer.music.stop()
                 print('[debug]music stop')
+                break
             
             
 def _song_download(url,title,author):
@@ -50,7 +47,7 @@ def _song_download(url,title,author):
         f.write(content)
 
     # 将二进制MP3文件转为标准MP3文件
-    ffmpeg_command = ['sudo','ffmpeg', '-i', input_path, output_path]
+    ffmpeg_command = ['sudo','ffmpeg', '-i', input_path, output_path, '-y']
     subprocess.run(ffmpeg_command)
 
 def _get_music_name(name):
@@ -66,7 +63,6 @@ def _get_music_name(name):
     url = 'https://music.liuzhijin.cn/'
     headers = {
         "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36",
-        # 判断请求是异步还是同步
         "x-requested-with":"XMLHttpRequest",
     }
     param = {

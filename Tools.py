@@ -2,6 +2,8 @@ import re
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
+import RPi.GPIO as GPIO
+import time
 
 def get_weather():
         """
@@ -45,7 +47,36 @@ def get_weather():
                 (today, weather, temp, sd, wind, aqi, info)
         return message, 'weather'
 
+def light(message):
+        """
+        Control the light.
+
+        Parameters:
+        - message: What user's say.
+
+        Returns:
+        str: The light information.
+        """
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
+        GPIO.setup(11, GPIO.OUT)
+        GPIO.setup(12, GPIO.OUT)
+        if '开灯' in message:
+                message = '灯已打开'
+                GPIO.output(11, GPIO.HIGH)
+        elif '关灯' in message:
+                message = '灯已关闭'
+                GPIO.output(11, GPIO.LOW)
+        msg_type = 'light'
+        return message, msg_type
+
 def shutdown():
         message = ''
         msg_type = 'shutdown'
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
+        GPIO.setup(11, GPIO.OUT)
+        GPIO.setup(12, GPIO.OUT)
+        GPIO.output(12, GPIO.LOW)
+        GPIO.output(11, GPIO.LOW)
         return message, msg_type
