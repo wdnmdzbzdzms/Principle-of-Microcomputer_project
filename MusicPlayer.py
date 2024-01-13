@@ -12,7 +12,7 @@ class MusicPlayer:
         self.recover =False
         self.ifpause =False
         download_music(name)
-        pygame.mixer.music.load(r'/home/kanno/Desktop/personal_folder/EE351/project2_byzzx_1217/data/music.mp3')
+        pygame.mixer.music.load(os.getcwd() + '/data/music.mp3')
 
     def play(self):
         pygame.mixer.music.play()
