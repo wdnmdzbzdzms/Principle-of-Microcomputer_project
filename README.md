@@ -1,4 +1,4 @@
-# zhinnengyingxiang
+# Intelligent Voice Speaker Based on ChatGPT
 
 This is a project of principle of microcomputer of SUSTech in autumn semester in 2023. It is a intelligent voice box which can use the online resource to play music, or talk to user in different tone. The project only support the raspberrypi system.   
 
