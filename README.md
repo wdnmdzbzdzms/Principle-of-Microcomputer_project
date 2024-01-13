@@ -21,5 +21,5 @@ For using the ChatGPT API and Google speech recognition, you have to run your VP
 
 ### Thanks
 - **https://music.liuzhijin.cn**
-- - **http://tianqi.moji.com**
+- **http://tianqi.moji.com**
 - **Google Cloud Speech API**
