@@ -20,5 +20,6 @@ This is a project of principle of microcomputer of SUSTech in autumn semester in
 For using the ChatGPT API and Google speech recognition, you have to run your VPN if you are CN user.  
 
 ### Thanks
-- **https://music.liuzhijin.cn/**
+- **https://music.liuzhijin.cn**
+- - **http://tianqi.moji.com**
 - **Google Cloud Speech API**
