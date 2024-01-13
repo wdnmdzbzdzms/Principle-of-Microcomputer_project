@@ -17,8 +17,8 @@ This is a project of principle of microcomputer of SUSTech in autumn semester in
 - speak "关机" or do `ctrl+C` to close the system
 
 ### Mention
-For using the ChatGPT API and Google speech recognization, you have to run your VPN if you are CN user.  
+For using the ChatGPT API and Google speech recognition, you have to run your VPN if you are CN user.  
 
 ### Thanks
-- **"https://music.liuzhijin.cn/"**
-- **Google speech recognization**
+- **https://music.liuzhijin.cn/**
+- **Google Cloud Speech API**
