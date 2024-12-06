@@ -24,5 +24,4 @@ For using the ChatGPT API and Google speech recognition, you have to run your VP
 - **http://tianqi.moji.com**
 - **Google Cloud Speech API**
 
-### Demostration Video
-[Demonstration Video]([https://www.example.com](https://www.bilibili.com/video/BV1g2vaesEVo))
+[Demonstration Video](https://www.bilibili.com/video/BV1g2vaesEVo)
